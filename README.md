@@ -1,4 +1,5 @@
 # deno-llvm-jit
+
 Deno LLVM JIT example
 
 ## Running example
@@ -10,12 +11,14 @@ deno run -A --unstable sum.ts
 ## Running C example
 
 ```sh
+sudo apt-get install make
+
 make && ./sum
 ```
 
 ## How libLLVM-15git.so was built
 
-* Warning: Building this takes a really long time (1-2h).
+- Warning: Building this takes a really long time (1-2h).
 
 ```sh
 git clone https://github.com/llvm/llvm-project.git
