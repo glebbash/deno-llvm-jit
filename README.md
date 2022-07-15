@@ -2,6 +2,8 @@
 
 Deno LLVM JIT example
 
+All dependencies can be found in .devcontainer/Dockerfile.base
+
 ## Running example
 
 ```sh
@@ -11,9 +13,10 @@ deno run -A --unstable sum.ts
 ## Running C example
 
 ```sh
-sudo apt-get install make
+make
 
-make && ./sum
+./sum       # using dynamic library
+./sum-no-dl # without dynamic library
 ```
 
 ## How libLLVM-15git.so was built

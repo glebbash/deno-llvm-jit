@@ -9,3 +9,6 @@ ENV PATH=${DENO_INSTALL}/bin:${PATH} \
 # install llvm
 RUN sudo wget https://apt.llvm.org/llvm.sh
 RUN sudo chmod +x llvm.sh && sudo ./llvm.sh 14
+
+# install make
+RUN sudo apt-get install -y make
