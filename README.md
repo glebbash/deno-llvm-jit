@@ -36,6 +36,8 @@ cmake \
   -DLLVM_TARGETS_TO_BUILD="X86;WebAssembly" \
   -DLLVM_BUILD_TOOLS="NO" \
   -DLLVM_BUILD_LLVM_DYLIB="YES" \
+  -DLLVM_DYLIB_COMPONENTS="all" \
+  -DLLVM_ENABLE_FFI="YES" \
   ../llvm
 ```
 
