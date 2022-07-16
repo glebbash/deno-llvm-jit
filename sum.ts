@@ -36,8 +36,15 @@ const engine = new BigUint64Array(1);
 error = new BigUint64Array(1);
 
 llvm.LLVMLinkInMCJIT();
+
+// LLVMInitializeNativeTarget(); is a macro for following 3 calls:
+llvm.LLVMInitializeX86TargetInfo();
 llvm.LLVMInitializeX86Target();
+llvm.LLVMInitializeX86TargetMC();
+
+// LLVMInitializeNativeAsmPrinter(); is a macro for following call:
 llvm.LLVMInitializeX86AsmPrinter();
+
 if (llvm.LLVMCreateExecutionEngineForModule(engine, mod, error) != 0) {
   console.error("failed to create execution engine");
   Deno.exit();
@@ -58,7 +65,7 @@ const sum_func = new Deno.UnsafeFnPointer(
 console.log(sum_func.call(34, 35));
 
 llvm.LLVMDisposeBuilder(builder);
-llvm.LLVMDisposeExecutionEngine(engine);
+llvm.LLVMDisposeExecutionEngine(engine[0]);
 
 // utils
 
@@ -138,7 +145,15 @@ function loadLLVM() {
       parameters: [],
       result: "void",
     },
+    LLVMInitializeX86TargetInfo: {
+      parameters: [],
+      result: "i32",
+    },
     LLVMInitializeX86Target: {
+      parameters: [],
+      result: "i32",
+    },
+    LLVMInitializeX86TargetMC: {
       parameters: [],
       result: "i32",
     },

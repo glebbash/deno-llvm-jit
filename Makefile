@@ -9,12 +9,6 @@ sum.o: sum.c
 	$(CC) $(CFLAGS) -c $<
 
 sum: sum.o
-	$(LD) $< $(LDFLAGS) -ldl -o $@
-
-sum-no-dl.o: sum-no-dl.c
-	$(CC) $(CFLAGS) -c $<
-
-sum-no-dl: sum-no-dl.o
 	$(LD) $< $(LDFLAGS) -o $@
 
 clean:
