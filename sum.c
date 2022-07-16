@@ -78,6 +78,8 @@ int main() {
     LLVMDisposeExecutionEngine(engine);
 }
 
+#define ADD_DLSYM(name) (name = dlsym(handle, #name))
+
 void load_llvm() {
     void *handle = dlopen("./libLLVM-15git.so", RTLD_LAZY | RTLD_DEEPBIND);
     if (!handle) {
@@ -85,24 +87,24 @@ void load_llvm() {
         abort();
     }
 
-    LLVMModuleCreateWithName = dlsym(handle, "LLVMModuleCreateWithName");
-    LLVMInt32Type = dlsym(handle, "LLVMInt32Type");
-    LLVMFunctionType = dlsym(handle, "LLVMFunctionType");
-    LLVMAddFunction = dlsym(handle, "LLVMAddFunction");
-    LLVMAppendBasicBlock = dlsym(handle, "LLVMAppendBasicBlock");
-    LLVMCreateBuilder = dlsym(handle, "LLVMCreateBuilder");
-    LLVMPositionBuilderAtEnd = dlsym(handle, "LLVMPositionBuilderAtEnd");
-    LLVMBuildAdd = dlsym(handle, "LLVMBuildAdd");
-    LLVMGetParam = dlsym(handle, "LLVMGetParam");
-    LLVMBuildRet = dlsym(handle, "LLVMBuildRet");
-    LLVMVerifyModule = dlsym(handle, "LLVMVerifyModule");
-    LLVMDisposeMessage = dlsym(handle, "LLVMDisposeMessage");
-    LLVMDumpModule = dlsym(handle, "LLVMDumpModule");
-    LLVMLinkInMCJIT = dlsym(handle, "LLVMLinkInMCJIT");
-    LLVMInitializeX86Target = dlsym(handle, "LLVMInitializeX86Target");
-    LLVMInitializeX86AsmPrinter = dlsym(handle, "LLVMInitializeX86AsmPrinter");
-    LLVMCreateExecutionEngineForModule = dlsym(handle, "LLVMCreateExecutionEngineForModule");
-    LLVMGetFunctionAddress = dlsym(handle, "LLVMGetFunctionAddress");
-    LLVMDisposeBuilder = dlsym(handle, "LLVMDisposeBuilder");
-    LLVMDisposeExecutionEngine = dlsym(handle, "LLVMDisposeExecutionEngine");
+    ADD_DLSYM(LLVMModuleCreateWithName);
+    ADD_DLSYM(LLVMInt32Type);
+    ADD_DLSYM(LLVMFunctionType);
+    ADD_DLSYM(LLVMAddFunction);
+    ADD_DLSYM(LLVMAppendBasicBlock);
+    ADD_DLSYM(LLVMCreateBuilder);
+    ADD_DLSYM(LLVMPositionBuilderAtEnd);
+    ADD_DLSYM(LLVMBuildAdd);
+    ADD_DLSYM(LLVMGetParam);
+    ADD_DLSYM(LLVMBuildRet);
+    ADD_DLSYM(LLVMVerifyModule);
+    ADD_DLSYM(LLVMDisposeMessage);
+    ADD_DLSYM(LLVMDumpModule);
+    ADD_DLSYM(LLVMLinkInMCJIT);
+    ADD_DLSYM(LLVMInitializeX86Target);
+    ADD_DLSYM(LLVMInitializeX86AsmPrinter);
+    ADD_DLSYM(LLVMCreateExecutionEngineForModule);
+    ADD_DLSYM(LLVMGetFunctionAddress);
+    ADD_DLSYM(LLVMDisposeBuilder);
+    ADD_DLSYM(LLVMDisposeExecutionEngine);
 }
